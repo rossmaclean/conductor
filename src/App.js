@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+
+  useEffect(() => {
+    const canvas = document.querySelector(".myCanvas");
+    const width = (canvas.width = window.innerWidth);
+    const height = (canvas.height = window.innerHeight);
+    const ctx = canvas.getContext("2d");
+
+    drawRoute1(ctx);
+  }, []);
+
+  const drawRoute1 = (ctx) => {
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 5;
+
+    // draw a red line
+    ctx.beginPath();
+    ctx.moveTo(100, 100);
+    ctx.lineTo(300, 100);
+    ctx.lineTo(300, 200);
+    ctx.lineTo(100, 200);
+    ctx.lineTo(100, 100);
+    ctx.stroke();
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <canvas className="myCanvas">
+        <p>Add suitable fallback here.</p>
+      </canvas>
     </div>
   );
 }
